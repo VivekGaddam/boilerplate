@@ -6,11 +6,12 @@ const session = require('express-session');
 const cors = require('cors');
 
 
-const connectDB = require('./db');
+const connectDB = require('./config/db');
 require('./config/passport'); 
 require('./firebaseAdmin');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
+const whatsappRoutes = require('./routes/whatsappRoutes');
 const errorHandler = require('./middleware/errorMiddleware');
 
 const app = express();
@@ -31,6 +32,7 @@ app.use(passport.session());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/whatsapp', whatsappRoutes);
 
 app.use(errorHandler);
 
